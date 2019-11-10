@@ -1,10 +1,9 @@
 public class Cycle {
 
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
         for (int i = 0; i <= 20; i++ ) {
             System.out.println(i);
-        }System.out.println();
+        }
 
         int step = 1;
         int numberCounter = 6;
@@ -22,7 +21,6 @@ public class Cycle {
             oddNumber += 2;
             sumOfOddNumber += oddNumber;
         } while (oddNumber < 19);
-        System.out.println();
         System.out.println(sumOfOddNumber);
     }
 }

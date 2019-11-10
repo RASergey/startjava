@@ -1,15 +1,15 @@
 public class ConditionalStatement {
 
     public static void main(String[] args) {
-
         int myAge = 36;
-        boolean ismale = true;
+        boolean isMale = true;
         float myHeight = 1.74f;
         String theFirstLetterOfMyName = "С";
+
         if (myAge > 20) {
             System.out.println("I'm over twenty years old");
         }
-        if (ismale) {
+        if (isMale) {
             System.out.println("I'm a man");
         } else {
             System.out.println("I'm definitely a man.");
