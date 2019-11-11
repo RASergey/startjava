@@ -1,4 +1,4 @@
-public class TestMyFirstGame {
+public class MyFirstGame {
 
     public static void main(String[] args) {
         int attempt = 39;           // число которое меняется игроком
