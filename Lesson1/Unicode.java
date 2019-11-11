@@ -1,12 +1,12 @@
 public class Unicode {
 
     public static void main(String[] args) {
-        char cycleStart = '\u0020';
-        char cycleEnd = '\u007F';
+        char startSymbol = '\u0020';
+        char endSymbol = '\u007F';
 
-        while (cycleStart != cycleEnd){
-            System.out.println(cycleStart);
-            cycleStart++;
+        while (startSymbol != endSymbol){
+            System.out.println(startSymbol);
+            startSymbol++;
         }
     }
 }

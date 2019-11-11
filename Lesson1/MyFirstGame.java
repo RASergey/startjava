@@ -1,27 +1,29 @@
-public class MyFirstGame {
+public class TestMyFirstGame {
 
     public static void main(String[] args) {
-        int guessedNumber = 30;
-        int attempt = 100;
+        int attempt = 39;           // число которое меняется игроком
+        final int guessedNumber = 30;    // загаданное число
 
-        System.out.println("Enter a number in the range from 0 to 100");
         if (attempt >= 0 && attempt <= 100) {
             System.out.println("You entered the number : " + attempt);
-            if (guessedNumber != attempt) {
-                while (guessedNumber != attempt){
-                    if (attempt <= (guessedNumber -20)||(attempt >= guessedNumber + 20)) {
-                        System.out.println("You are still far!");
-                    }else if (attempt <= guessedNumber - 10 || attempt >= guessedNumber + 10)
-                        System.out.println("You're in the right direction");
-                    }else if (attempt <= guessedNumber - 1 || attempt >= guessedNumber + 1) {
-                        System.out.println("Don't give up the goal is in front of you");
+                if (guessedNumber != attempt) {
+                    if (attempt <= guessedNumber-30) {
+                        System.out.println("your number is much smaller");
+                    } else if (attempt >= guessedNumber+30) {
+                        System.out.println("your number is much larger");
+                    } else if (attempt <= guessedNumber-15) {
+                        System.out.println("your number is smaller");
+                    } else if (attempt >= guessedNumber+15) {
+                        System.out.println("your number is bigger");
+                    } else if (attempt <= guessedNumber-1) {
+                        System.out.println("your number is slightly smaller");
+                    } else if (attempt >= guessedNumber+1) {
+                        System.out.println("your number is slightl largeyr");
                     }
-                    System.out.println("Try it again"); break;
+                } else {
+                    System.out.println("You guessed it! Guessed number : " + guessedNumber);
                 }
-            }else{
-                System.out.println("You won! Guessed number : " + guessedNumber);
-            }
-        }else{
+        } else {
             System.out.println("The number is not in the range from 0 to 100");
         }
     }

@@ -7,25 +7,25 @@ public class Calculator {
         char sign = '+';
         int rezult;
 
-        if(sign == '+'){
+        if (sign == '+') {
             rezult = firstNumber + secondNumber;
             System.out.println("Sum = " + rezult);
-        }else if(sign == '-'){
+        } else if (sign == '-') {
             rezult = firstNumber - secondNumber;
             System.out.println("Difference = " + rezult);
-        }else if(sign =='*'){
+        } else if (sign == '*') {
             rezult = firstNumber * secondNumber;
             System.out.println("Multiplication = " + rezult);
-        }else if (sign == '/') {
+        } else if (sign == '/') {
             rezult = firstNumber / secondNumber;
             System.out.println("Divide = " + rezult);
-        }else if (sign == '%') {
+        } else if (sign == '%') {
             rezult = firstNumber % secondNumber;
             System.out.println("Remainder of division = " + rezult);
-        }else if (sign == '^') {
+        } else if (sign == '^') {
             rezult = firstNumber;
-            for (int i = 1; i < secondNumber; i++ ) {
-                rezult *=firstNumber;
+            for (int i = 1; i < secondNumber; i++) {
+                rezult *= firstNumber;
             }
             System.out.println("Exponentiation = " + rezult);
         }

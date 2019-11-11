@@ -1,8 +1,11 @@
 public class Cycle {
 
     public static void main(String[] args) {
+        int rangeTwenty;
+
         for (int i = 0; i <= 20; i++ ) {
-            System.out.println(i);
+            rangeTwenty = i;
+            System.out.println(rangeTwenty);
         }
 
         int step = 1;
