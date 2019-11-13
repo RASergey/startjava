@@ -5,29 +5,29 @@ public class Calculator {
         int firstNumber = 5;
         int secondNumber = 3;
         char sign = '+';
-        int rezult;
+        int result;
 
         if (sign == '+') {
-            rezult = firstNumber + secondNumber;
-            System.out.println("Sum = " + rezult);
+            result = firstNumber + secondNumber;
+            System.out.println("Sum = " + result);
         } else if (sign == '-') {
-            rezult = firstNumber - secondNumber;
-            System.out.println("Difference = " + rezult);
+            result = firstNumber - secondNumber;
+            System.out.println("Difference = " + result);
         } else if (sign == '*') {
-            rezult = firstNumber * secondNumber;
-            System.out.println("Multiplication = " + rezult);
+            result = firstNumber * secondNumber;
+            System.out.println("Multiplication = " + result);
         } else if (sign == '/') {
-            rezult = firstNumber / secondNumber;
-            System.out.println("Divide = " + rezult);
+            result = firstNumber / secondNumber;
+            System.out.println("Divide = " + result);
         } else if (sign == '%') {
-            rezult = firstNumber % secondNumber;
-            System.out.println("Remainder of division = " + rezult);
+            result = firstNumber % secondNumber;
+            System.out.println("Remainder of division = " + result);
         } else if (sign == '^') {
-            rezult = firstNumber;
+            result = firstNumber;
             for (int i = 1; i < secondNumber; i++) {
-                rezult *= firstNumber;
+                result *= firstNumber;
             }
-            System.out.println("Exponentiation = " + rezult);
+            System.out.println("Exponentiation = " + result);
         }
     }
 }

@@ -1,26 +1,25 @@
 public class MyFirstGame {
 
     public static void main(String[] args) {
-        int attempt = 45;
-        final int guessedNumber = 55;
+        int attempt = 25;
+        final int guessedNumber = 87;
 
-        System.out.println("You entered the number: " + attempt);
-        do {
-            if (attempt != guessedNumber) {
-                if (attempt > 0 && attempt < 100) {
-                    if (attempt < guessedNumber) {
-                        System.out.println("The number entered by you is more (less) than what the computer wished for");
-                    } else if (attempt > guessedNumber) {
-                        System.out.println("The number entered by you is more (more) that the computer made a wish");
-                    }
-                } else {
-                    System.out.println("The number is not in the range from 0 to 100");
-                }
-                System.out.println("Enter a number: ");
-                break;
-            } else {
-                System.out.println("You guessed it!");
+        while (attempt != guessedNumber) {
+            System.out.println("Введите чиСло");
+            if (attempt < 0) {
+                System.out.println("Введите чиСло от 0 до 100");
+                    attempt *=0;
+            } else if (attempt > 100) {
+                System.out.println("Введите чиСло от 0 до 100");
+                attempt = attempt - (attempt - 100);
+            } else if (attempt > guessedNumber) {
+                System.out.println("Введенное вами чиСло больше того, что загодал компьютер");
+                attempt -=9;
+            } else if (attempt < guessedNumber) {
+                System.out.println("Введенное вами чиСло меньше того, что загодал компьютер");
+                attempt +=10;
             }
-        } while (attempt != guessedNumber);
+        }
+        System.out.println("Вы угадали!");
     }
 }
