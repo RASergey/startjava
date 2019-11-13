@@ -8,7 +8,7 @@ public class MyFirstGame {
             System.out.println("Введите чиСло");
             if (attempt < 0) {
                 System.out.println("Введите чиСло от 0 до 100");
-                    attempt *=0;
+                attempt *=0;
             } else if (attempt > 100) {
                 System.out.println("Введите чиСло от 0 до 100");
                 attempt = attempt - (attempt - 100);
