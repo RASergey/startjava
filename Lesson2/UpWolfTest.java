@@ -1,11 +1,16 @@
 public class UpWolfTest {
 
     public static void main(String[] args) {
-        final UpWolf wolf = new UpWolf();
-        wolf.setNameWolf("Одиночка");
-        wolf.setColorWolf("Серого");
-        wolf.setAgeWolf(5);
-        wolf.showWolf();
-
+        UpWolf wolf = new UpWolf();
+        wolf.setName("Одиночка");
+        wolf.setColor("Серого");
+        wolf.setGender("Самец");
+        wolf.setAge(7);
+        wolf.setWeight(25.7);
+        System.out.println(wolf);
+        System.out.print(wolf.isGo() + "\n");
+        System.out.print(wolf.isRun() + "\n");
+        System.out.print(wolf.isHowl() + "\n");
+        System.out.print(wolf.isHunter());
     }
 }

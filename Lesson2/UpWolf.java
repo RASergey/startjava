@@ -1,81 +1,94 @@
 public class UpWolf {
 
-    private String genderWolf = "Самец";
-    private String nameWolf = "\"Белый клык\"";
-    private float weightWolf = 64.5f;
-    private int ageWolf = 7;
-    private String colorWolf = "чёрно белого";
+    private String name;
+    private String gender;
+    private String color;
+    private int age;
+    private double weight;
 
-
-
-    public String getNameWolf() {
-        return nameWolf;
-    }
-    public String getGenderWolf() {
-        return genderWolf;
-    }
-    public float getWeightWolf() {
-        return weightWolf;
-    }
-    public int getAgeWolf() {
-        return ageWolf;
-    }
-    public String getColorWolf() {
-        return colorWolf;
+    public String toString() {
+        return "Кличка волка: " + getName() + "\nПол волка: " + getGender() + "\nВолк: " + getColor() + " окраСа" + "\nВозраСт волка: " + getAge() + " лет" + "\nВеС волка: " + getWeight() + "кг.\n";
     }
 
-    public void setNameWolf(String nameWolf) {
-        if (nameWolf == "") {
-            this.nameWolf = "ПуСтаЯ Строка";
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name == "") {
+            this.name = "ПуСтаЯ Строка";
         } else {
-            this.nameWolf = nameWolf;
-        }
-    }
-    public void setAgeWolf(int ageWolf) {
-        if (ageWolf > 8) {
-            this.ageWolf = ageWolf;
-            System.out.println("\n" + this.ageWolf + " лет - некорректный возраСт");
-        } else {
-            this.ageWolf = ageWolf;
-        }
-    }
-    public void setColorWolf(String colorWolf) {
-        if (colorWolf == "") {
-            this.colorWolf = "ПуСтаЯ Строка";
-        } else {
-            this.colorWolf = colorWolf;
+            this.name = name;
         }
     }
 
-    public boolean goWolf() {
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 8) {
+            this.age = age;
+            System.out.println("\n" + this.age + " лет - некорректный возраСт\n");
+        } else {
+            this.age = age;
+        }
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        if (color == "") {
+            this.color = "ПуСтаЯ Строка";
+        } else {
+            this.color = color;
+        }
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        if (gender == "") {
+            this.gender = "ПуСтаЯ Строка";
+        } else {
+            this.gender = gender;
+        }
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        if (weight < 5) {
+            this.weight = weight;
+            System.out.println("\n" + this.weight + "кг. - некорректный веC\n");
+        } else {
+            this.weight = weight;
+        }
+    }
+
+    public boolean isGo() {
         System.out.print("Идёт - ");
         return false;
     }
 
-    public boolean runWolf() {
+    public boolean isRun() {
         System.out.print("\nБежит - ");
         return true;
     }
 
-    public boolean howlWolf() {
+    public boolean isHowl() {
         System.out.print("\nВоет - ");
         return false;
     }
 
-    public boolean hunterWolf() {
+    public boolean isHunter() {
         System.out.print("\nохотитСЯ - ");
         return true;
-    }
-
-    public void showWolf(){
-        System.out.println("\nПол волка: " + getGenderWolf());
-        System.out.println("Кличка волка: " + getNameWolf());
-        System.out.println("ВеС волка: " + getWeightWolf() + "кг.");
-        System.out.println("ВозраСт волка: " + getAgeWolf() + " лет");
-        System.out.println("Волк: " + getColorWolf() + " окраСа\n");
-        System.out.print(goWolf() + "\n");
-        System.out.print(runWolf() + "\n");
-        System.out.print(howlWolf() + "\n");
-        System.out.print(hunterWolf());
     }
 }

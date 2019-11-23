@@ -1,27 +1,27 @@
 public class Wolf {
 
-    String genderWolf;
-    String nameWolf;
-    float weightWolf;
-    byte ageWolf;
-    String colorWolf;
+    public String gender;
+    public String name;
+    public float weight;
+    public byte age;
+    public String color;
 
-    boolean goWolf() {
+    public boolean go() {
         System.out.print("Идёт - ");
         return false;
     }
 
-    boolean runWolf() {
+    public boolean run() {
         System.out.print("\nБежит - ");
         return true;
     }
 
-    boolean howlWolf(){
+    public boolean howl() {
         System.out.print("\nВоет - ");
         return false;
     }
 
-    boolean hunterWolf(){
+    public boolean hunter() {
         System.out.print("\n\"охотитСЯ\" - ");
         return true;
     }
