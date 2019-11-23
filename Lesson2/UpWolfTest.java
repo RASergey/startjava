@@ -7,6 +7,7 @@ public class UpWolfTest {
         wolf.setGender("Самец");
         wolf.setAge(7);
         wolf.setWeight(25.7);
+
         System.out.println(wolf);
         System.out.print(wolf.isGo() + "\n");
         System.out.print(wolf.isRun() + "\n");

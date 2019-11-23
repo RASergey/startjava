@@ -6,10 +6,6 @@ public class UpWolf {
     private int age;
     private double weight;
 
-    public String toString() {
-        return "Кличка волка: " + getName() + "\nПол волка: " + getGender() + "\nВолк: " + getColor() + " окраСа" + "\nВозраСт волка: " + getAge() + " лет" + "\nВеС волка: " + getWeight() + "кг.\n";
-    }
-
     public String getName() {
         return name;
     }
@@ -90,5 +86,9 @@ public class UpWolf {
     public boolean isHunter() {
         System.out.print("\nохотитСЯ - ");
         return true;
+    }
+
+    public String toString() {
+        return "Кличка волка: " + getName() + "\nПол волка: " + getGender() + "\nВолк: " + getColor() + " окраСа" + "\nВозраСт волка: " + getAge() + " лет" + "\nВеС волка: " + getWeight() + "кг.\n";
     }
 }

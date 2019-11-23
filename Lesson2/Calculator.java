@@ -4,8 +4,7 @@ public class Calculator {
     public char sign;
     public int result;
 
-    public void result() {
-        boolean isCheckSign = true;
+    public int result() {
         switch (sign) {
             case '+':
                 result = firstNumber + secondNumber;
@@ -28,14 +27,8 @@ public class Calculator {
             case '%':
                 result = firstNumber % secondNumber;
                 break;
-            default:
-                isCheckSign = false;
         }
-        if (isCheckSign) {
-            System.out.println(firstNumber + " " + sign + " " + secondNumber + " = " + result);
-        } else {
-            System.out.println("Введена некорректнаЯ операциЯ! Повторите ввод...");
-        }
+        return result;
     }
 }
 
