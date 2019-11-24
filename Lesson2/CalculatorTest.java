@@ -12,13 +12,19 @@ public class CalculatorTest {
             System.out.print("Введите первое целое чиСло : ");
             if (scan.hasNextInt()) {
                 operation.firstNumber = scan.nextInt();
+            } else {
+                System.out.println("Hекорректное чиСло, повторите ввод.");
+                scan.next();
+                operation.firstNumber = scan.nextInt();
             }
             System.out.print("Введите операцию :");
-            if (scan.hasNext()) {
-                operation.sign = scan.next().charAt(0);
-            }
+            operation.sign = scan.next().charAt(0);
             System.out.print("Введите второе целое чиСло : ");
             if (scan.hasNextInt()) {
+                operation.secondNumber = scan.nextInt();
+            } else {
+                System.out.println("Hекорректное чиСло, повторите ввод.");
+                scan.next();
                 operation.secondNumber = scan.nextInt();
             }
             System.out.println(" = " + operation.result());
