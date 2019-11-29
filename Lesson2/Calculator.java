@@ -2,33 +2,26 @@ public class Calculator {
     public int firstNumber;
     public int secondNumber;
     public char sign;
-    public int calculate;
 
-    public int result() {
+    public int calculate() {
         switch (sign) {
             case '+':
-                calculate = firstNumber + secondNumber;
-                break;
+                return firstNumber + secondNumber;
             case '-':
-                calculate = firstNumber - secondNumber;
-                break;
+                return firstNumber - secondNumber;
             case '*':
-                calculate = firstNumber * secondNumber;
-                break;
+                return firstNumber * secondNumber;
             case '/':
-                calculate = firstNumber / secondNumber;
-                break;
+                return firstNumber / secondNumber;
             case '^':
-                calculate = firstNumber;
+            int counter = firstNumber;
                 for (int i = 1; i < secondNumber; i++) {
-                    calculate *= firstNumber;
+                    counter *= firstNumber;
                 }
-                break;
+                return counter;
             case '%':
-                calculate = firstNumber % secondNumber;
-                break;
+                return firstNumber % secondNumber;
         }
-        return calculate;
+        return calculate();
     }
 }
-
