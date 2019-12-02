@@ -9,76 +9,20 @@ public class Jaeger {
     private int armor;
     private int kaijuKilled;
 
+    public Jaeger(String name, String mark, String origin, double height, double weight, int speed, int strengdth, int armor, int kaijuKilled) {
+        this.name = name;
+        this.mark = mark;
+        this.origin = origin;
+        this.height = height;
+        this.weight = weight;
+        this.speed = speed;
+        this.strengdth = strengdth;
+        this.armor = armor;
+        this.kaijuKilled = kaijuKilled;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
-
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getStrengdth() {
-        return strengdth;
-    }
-
-    public void setStrengdth(int strengdth) {
-        this.strengdth = strengdth;
-    }
-
-    public int getArmor() {
-        return armor;
-    }
-
-    public void setArmor(int armor){
-        this.armor = armor;
-    }
-
-    public int getKaijuKilled() {
-        return kaijuKilled;
-    }
-
-    public void setKaijuKilled(int kaijuKilled) {
-        this.kaijuKilled = kaijuKilled;
     }
 
     public boolean isStateOnOff() {
@@ -88,7 +32,7 @@ public class Jaeger {
 
     public void move() {
         if (speed == 0) {
-            System.out.println(getName() + ": Стою на меcте");
+            System.out.println(getName() + ": Стою на меСте");
         } else if (speed > 0) {
             System.out.println(getName() + ": Движение к цели...");
         }
@@ -104,7 +48,7 @@ public class Jaeger {
     }
 
     public boolean isDrift() {
-        System.out.println(getName() + ": Пилоты подключены. Включён режим \"Drift\"");
+        System.out.println(getName() + ": Оба пилота подключены. Включён режим \"Drift\"");
         return true;
     }
 
