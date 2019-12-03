@@ -6,6 +6,9 @@ public class Player {
         this.name = name;
     }
 
+    public Player() {
+    }
+
     public String getName() {
         return name;
     }
@@ -14,7 +17,7 @@ public class Player {
         return number;
     }
 
-    public void setNumber (int number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
