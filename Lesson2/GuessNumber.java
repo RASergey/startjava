@@ -3,58 +3,66 @@ import java.util.Scanner;
 
 public class GuessNumber {
     Scanner scan = new Scanner(System.in);
-    Player inputNumber = new Player();
-    private int hiddenNumber = 0 + (int) (Math.random() * 100);
+    private String player1;
+    private String player2;
+    private int inputNumber;
+    private int inputNumber1;
+    private int inputNumber2;
     private int lowLimit = 0;
-    private int highLimit = 100;
-    private String askWork;
-    private boolean isMatchedNumber = true;
+    private int highLimit = 101;
+    private int randomNumber;
+    private String gameOver;
 
-    public void processingGame(String player1, String player2) {
-        String[] players = new String[]{player1, player2};
-        do {
-            do {
-                for (String player : players) {
-                    System.out.print(player + " введите число от 0 до 100: ");
-                    while (!(scan.hasNextInt())) {
-                        System.out.print(player + " некорректное число, повторите ввод: ");
-                        scan.next();
-                    }
-                    System.out.println(hiddenNumber);
-                    inputNumber.setNumber(scan.nextInt());
-                    while (isNumberInRange()) {
-                        System.out.print(player + " введено число вне диапазона от 0 до 100, повторите ввод: ");
-                        inputNumber.setNumber(scan.nextInt());
-                    }
-                    if (isCompareNumber()) {
-                        isMatchedNumber = false;
-                        break;
-                    }
-                }
-            } while (isMatchedNumber);
-            System.out.print("Хотите повторить? да/нет: ");
-            askWork = scan.next();
-            while(!(askWork.equals("да")) && !(askWork.equals("нет")));
-                if (askWork.equals("нет")) {
-                    System.out.println("Закройте консоль.");
-                }
-        } while(askWork.equals("да"));
+    public GuessNumber(String player1, String player2, int inputNumber1, int inputNumber2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.inputNumber1 = inputNumber1;
+        this.inputNumber2 = inputNumber2;
     }
 
-    public boolean isNumberInRange() {
-        return inputNumber.getNumber() < lowLimit || inputNumber.getNumber() > highLimit;
+    public String getGameOver() {
+        return gameOver;
     }
 
-    public boolean isCompareNumber() {
-        if (inputNumber.getNumber() > hiddenNumber) {
-            System.out.println("Ваше число больше того, что загодал компьютер");
-            return false;
-        } else if (inputNumber.getNumber() < hiddenNumber) {
-            System.out.println("Ваше число меньше того, что загодал компьютер");
-            return false;
-        } else {
-            System.out.println("Угадал число. Победа!!!");
-            return true;
+    public void setGameOver(String gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public void gameLogic() {
+
+        while (!(scan.hasNextInt())) {
+            System.out.print("Некорректное число, повторите ввод: ");
+            scan.next();
         }
+        inputNumber = scan.nextInt();
+        while (inputNumber < lowLimit || inputNumber > highLimit) {
+            System.out.print("Введено число вне диапазона от 0 до 100, повторите ввод: ");
+            inputNumber = scan.nextInt();
+        }
+        if (inputNumber > randomNumber) {
+            System.out.println("Ваше число больше того, что загадал компьютер\n");
+        } else if (inputNumber < randomNumber) {
+            System.out.println("Ваше число меньше того, что загадал компьютер\n");
+        }
+    }
+
+    public void processingGame() {
+        randomNumber = lowLimit + (int) (Math.random() * highLimit);
+        do {
+            System.out.print("Ходит игрок: " + player1 + " введите число от 0 до 100: ");
+            gameLogic();
+            inputNumber1 = inputNumber;
+            if (inputNumber1 == randomNumber) {
+                System.out.println("Пебеда " + player1 + " отгадал число" );
+            }
+            if (inputNumber1 != randomNumber) {
+                System.out.print( "Ходит игрок: " + player2 + " введите число от 0 до 100: ");
+                gameLogic();
+                inputNumber2 = inputNumber;
+            }
+            if (inputNumber2 == randomNumber) {
+                System.out.println("Пебеда " + player2 + " отгадал число" );
+            }
+        } while (inputNumber != randomNumber);
     }
 }
