@@ -8,37 +8,29 @@ public class GuessNumber {
     private int inputNumber;
     private int inputNumber1;
     private int inputNumber2;
-    private int lowLimit = 0;
-    private int highLimit = 101;
     private int randomNumber;
-    private String gameOver;
 
-    public GuessNumber(String player1, String player2, int inputNumber1, int inputNumber2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.inputNumber1 = inputNumber1;
-        this.inputNumber2 = inputNumber2;
+    public GuessNumber(Player player1, Player player2) {
+        this.player1 = player1.getName();
+        this.player2 = player2.getName();
+        this.inputNumber1 = player1.getNumber();
+        this.inputNumber2 = player2.getNumber();
     }
 
-    public String getGameOver() {
-        return gameOver;
-    }
-
-    public void setGameOver(String gameOver) {
-        this.gameOver = gameOver;
-    }
-
-    public void gameLogic() {
-
+    private void enterNumber() {
         while (!(scan.hasNextInt())) {
             System.out.print("Некорректное число, повторите ввод: ");
             scan.next();
         }
         inputNumber = scan.nextInt();
-        while (inputNumber < lowLimit || inputNumber > highLimit) {
+        while (inputNumber < 0 || inputNumber > 100) {
             System.out.print("Введено число вне диапазона от 0 до 100, повторите ввод: ");
+            System.out.println("");
             inputNumber = scan.nextInt();
         }
+    }
+
+    private void checkNumber() {
         if (inputNumber > randomNumber) {
             System.out.println("Ваше число больше того, что загадал компьютер\n");
         } else if (inputNumber < randomNumber) {
@@ -46,18 +38,20 @@ public class GuessNumber {
         }
     }
 
-    public void processingGame() {
-        randomNumber = lowLimit + (int) (Math.random() * highLimit);
+    public void startGame() {
+        randomNumber =(int)(Math.random() * 101);
         do {
             System.out.print("Ходит игрок: " + player1 + " введите число от 0 до 100: ");
-            gameLogic();
+            enterNumber();
+            checkNumber();
             inputNumber1 = inputNumber;
             if (inputNumber1 == randomNumber) {
                 System.out.println("Пебеда " + player1 + " отгадал число" );
             }
             if (inputNumber1 != randomNumber) {
                 System.out.print( "Ходит игрок: " + player2 + " введите число от 0 до 100: ");
-                gameLogic();
+                enterNumber();
+                checkNumber();
                 inputNumber2 = inputNumber;
             }
             if (inputNumber2 == randomNumber) {
