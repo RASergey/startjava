@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class GuessNumberTest {
@@ -16,10 +15,8 @@ public class GuessNumberTest {
             do {
                 System.out.print("Хотите повторить? да/нет: ");
                 gameOver = scan.next();
-            }while(!(gameOver.equals("да")) && !(gameOver.equals("нет")));
-            if (gameOver.equals("нет")) {
-                System.out.println("Закройте консоль.");
-            }
-        } while(gameOver.equals("да"));
+            } while (!gameOver.equals("да") && !gameOver.equals("нет"));
+        } while (gameOver.equals("да"));
+        System.out.println("Закройте консоль.");
     }
 }
