@@ -12,26 +12,26 @@ public class GuessNumber {
     }
 
     public void startGame() {
-        randomNumber =(int)(Math.random() * 101);
-        do {
+        randomNumber = (int)(Math.random() * 101);
+        boolean isPlay = true;
+        while (isPlay) {
             System.out.print("Ходит игрок: " + player1.getName() + " введите число от 0 до 100: ");
             player1.setNumber(enterNumber());
-            if (checkNumber()) {
-                System.out.print( "Ходит игрок: " + player2.getName() + " введите число от 0 до 100: ");
+            isPlay = isCheckNumber1();
+            if (isPlay) {
+                System.out.print("Ходит игрок: " + player2.getName() + " введите число от 0 до 100: ");
                 player2.setNumber(enterNumber());
-                player1.setNumber(player2.getNumber());
-                checkNumber();
+                isPlay = isCheckNumber2();
             }
-        } while (player1.getNumber() != randomNumber);
+        }
     }
 
     private int enterNumber() {
-        int inputNumber;
         while (!scan.hasNextInt()) {
             System.out.print("Некорректное число, повторите ввод: ");
             scan.next();
         }
-        inputNumber = scan.nextInt();
+        int inputNumber = scan.nextInt();
         while (inputNumber < 0 || inputNumber > 100) {
             System.out.print("Введено число вне диапазона от 0 до 100, повторите ввод: ");
             inputNumber = scan.nextInt();
@@ -39,16 +39,27 @@ public class GuessNumber {
         return inputNumber;
     }
 
-    private boolean checkNumber() {
+    private boolean isCheckNumber1() {
         if (player1.getNumber() > randomNumber) {
-            System.out.println("Ваше число больше того, что загадал компьютер\n");
-            return true;
+            System.out.println(player1.getName() + ", ваше число больше того, что загадал компьютер\n");
         } else if (player1.getNumber() < randomNumber) {
-            System.out.println("Ваше число меньше того, что загадал компьютер\n");
-            return true;
+            System.out.println(player1.getName() + ", ваше число меньше того, что загадал компьютер\n");
         } else {
-            System.out.println("Пебеда вы отгадали число!" );
+            System.out.println(player1.getName() + ", пебеда вы отгадали число!");
             return false;
         }
+        return true;
+    }
+
+    private boolean isCheckNumber2() {
+        if (player2.getNumber() > randomNumber) {
+            System.out.println(player2.getName() + ", ваше число больше того, что загадал компьютер\n");
+        } else if (player2.getNumber() < randomNumber) {
+            System.out.println(player2.getName() + ", ваше число меньше того, что загадал компьютер\n");
+        } else {
+            System.out.println(player2.getName() + ", пебеда вы отгадали число!");
+            return false;
+        }
+        return true;
     }
 }
