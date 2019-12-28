@@ -5,33 +5,30 @@ public class Calculator {
     private int secondNumber;
     private char sign;
 
-    public void setFirstNumber(int firstNumber) {
+    public Calculator(int firstNumber, char sign, int secondNumber) {
         this.firstNumber = firstNumber;
-    }
-
-    public void setSecondNumber(int secondNumber) {
+        this.sign = sign;
         this.secondNumber = secondNumber;
     }
 
-    public void setSign(char sign) {
-        this.sign = sign;
-    }
-
-    public int calculate() {
+    public String calculate() {
+        String result = "";
         switch (sign) {
             case '+':
-                return Math.addExact(firstNumber, secondNumber);
+                return result + Math.addExact(firstNumber, secondNumber);
             case '-':
-                return Math.subtractExact(firstNumber, secondNumber);
+                return result + Math.subtractExact(firstNumber, secondNumber);
             case '*':
-                return Math.multiplyExact(firstNumber, secondNumber);
+                return result + Math.multiplyExact(firstNumber, secondNumber);
             case '/':
-                return Math.floorDiv(firstNumber, secondNumber);
+                return result + Math.floorDiv(firstNumber, secondNumber);
             case '^':
-                return (int) Math.pow(firstNumber, secondNumber);
+                return result + Math.pow(firstNumber, secondNumber);
             case '%':
-                return firstNumber % secondNumber;
+                return result + firstNumber % secondNumber;
+            default:
+                System.out.println("Введена некорректная операция! Повторите ввод...");
         }
-        return calculate();
+        return null;
     }
 }
