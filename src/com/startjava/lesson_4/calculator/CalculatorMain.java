@@ -15,13 +15,12 @@ public class CalculatorMain {
             System.out.print("Введите математическое выражение: ");
             String mathExpression = scan.nextLine();
             Calculator calc = new Calculator(mathExpression.split(" "));
-            calc.calculate();
-            historyResult[index] = calc.getResult();
-            System.out.println("= " + calc.getResult());
+            historyResult[index] = calc.calculate();
+            System.out.println("= " + historyResult[index]);
             int[] showHistory = Arrays.copyOf(historyResult, index + 1);
-            System.out.println("История полученых результатов " + Arrays.toString(showHistory));
+            System.out.println("История полученных результатов " + Arrays.toString(showHistory));
             index++;
-            if (index > 9) {
+            if (index > historyResult.length - 1) {
                 System.out.println("Обнуление истории");
                 Arrays.fill(historyResult, 0);
                 index = 0;
