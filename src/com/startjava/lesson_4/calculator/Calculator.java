@@ -4,31 +4,40 @@ public class Calculator {
     private int firstNumber;
     private int secondNumber;
     private char sign;
+    private int result;
 
-    public Calculator(int firstNumber, char sign, int secondNumber) {
-        this.firstNumber = firstNumber;
-        this.sign = sign;
-        this.secondNumber = secondNumber;
+    public int getResult() {
+        return result;
     }
 
-    public String calculate() {
-        String result = "";
+    public Calculator(String[] mathExpression) {
+        this.firstNumber = Integer.parseInt(mathExpression[0]);
+        this.sign = mathExpression[1].charAt(0);
+        this.secondNumber = Integer.parseInt(mathExpression[2]);
+    }
+
+    public void calculate() {
         switch (sign) {
             case '+':
-                return result + Math.addExact(firstNumber, secondNumber);
+                result = Math.addExact(firstNumber, secondNumber);
+                break;
             case '-':
-                return result + Math.subtractExact(firstNumber, secondNumber);
+                result = Math.subtractExact(firstNumber, secondNumber);
+                break;
             case '*':
-                return result + Math.multiplyExact(firstNumber, secondNumber);
+                result = Math.multiplyExact(firstNumber, secondNumber);
+                break;
             case '/':
-                return result + Math.floorDiv(firstNumber, secondNumber);
+                result = Math.floorDiv(firstNumber, secondNumber);
+                break;
             case '^':
-                return result + Math.pow(firstNumber, secondNumber);
+                result = (int) Math.pow(firstNumber, secondNumber);
+                break;
             case '%':
-                return result + firstNumber % secondNumber;
+                result = firstNumber % secondNumber;
+                break;
             default:
                 System.out.println("Введена некорректная операция! Повторите ввод...");
         }
-        return null;
     }
 }
