@@ -8,10 +8,8 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private int randomNumber;
-    private int[] inputNumber1 = new int[10];
-    private int[] inputNumber2 = new int[10];
-    private int index = 0;
-    private int attempt = 0;
+    private int index;
+    private int attempt;
     private boolean isPlay;
 
     public GuessNumber(Player player1, Player player2) {
@@ -21,32 +19,42 @@ public class GuessNumber {
 
     public void startGame() {
         System.out.println("Игра началась");
-        newGame();
-        randomNumber = (int) (Math.random() * 101);
+        setUP();
         movesOfThePlayers();
+        System.out.println("\nЗа всю игру " + player1.getName() + " ввел числа: " + player1.getHistoryNumber());
+        System.out.println("За всю игру " + player2.getName() + " ввел числа: " + player2.getHistoryNumber());
+    }
+
+    private void setUP() {
+        randomNumber = (int) (Math.random() * 101);
+        isPlay = true;
+        player1.setHistoryNumber("");
+        player2.setHistoryNumber("");
+        index = 0;
+        attempt = 0;
     }
 
     private void movesOfThePlayers() {
-        System.out.println("У вас " + inputNumber1.length + " попыток");
+        System.out.println("У вас " + player1.getInputNumber().length + " попыток");
         while (isPlay) {
-            System.out.print("Ходит игрок: " + player1.getName() + " введите число от 0 до 100: ");
-            player1.setNumber(enterNumber());
-            inputNumber1[index] = player1.getNumber();
-            isPlay = isCheckNumber(player1);
-            inputHistory(player1);
+            moveOfThePlayer(player1);
             if (isPlay) {
-                System.out.print("Ходит игрок: " + player2.getName() + " введите число от 0 до 100: ");
-                player2.setNumber(enterNumber());
-                inputNumber2[index] = player2.getNumber();
-                isPlay = isCheckNumber(player2);
-                inputHistory(player2);
+                moveOfThePlayer(player2);
             }
-            ++attempt;
-            ++index;
-            if (index > inputNumber1.length - 1 && isPlay) {
+            attempt++;
+            index++;
+            if (index > player1.getInputNumber().length - 1 && isPlay) {
                 accountingForAttempts();
             }
         }
+    }
+
+    private void moveOfThePlayer(Player player) {
+        System.out.print("Ходит игрок: " + player.getName() + " введите число от 0 до 100: ");
+        player.setNumber(enterNumber());
+        player.setInputNumber(player.getNumber(), index);
+        isPlay = isTestForEquality(player);
+        inputHistory(player);
     }
 
     private int enterNumber() {
@@ -63,45 +71,21 @@ public class GuessNumber {
         return inputNumber;
     }
 
-    private boolean isCheckNumber(Player player) {
+    private boolean isTestForEquality(Player player) {
         if (player.getNumber() > randomNumber || player.getNumber() < randomNumber) {
             System.out.println(player.getName() + ", не угадал");
         } else {
             System.out.println("\nИгрок " + player.getName() + " угадал число " + player.getNumber() + " c " + (attempt + 1) + " попытки за всю игру");
-            showArrayNumbers();
+            showNumbers(player);
             return false;
         }
         return true;
     }
 
-    private void accountingForAttempts() {
-        System.out.println("\nУ " + player1.getName() + " закончились попытки");
-        System.out.println("У " + player2.getName() + " закончились попытки");
-        index = 0;
-        Arrays.fill(inputNumber1, 0);
-        Arrays.fill(inputNumber2, 0);
-        gameOver();
-    }
-
-    private void gameOver() {
-        String gameOver = "";
-        do {
-            System.out.print("Второй шанс, продолжим? y/n: ");
-            gameOver = scan.nextLine();
-        } while (!gameOver.equals("y") && !gameOver.equals("n"));
-        if (gameOver.equals("y")) {
-            movesOfThePlayers();
-        }
-    }
-
-    private void showArrayNumbers() {
-        if (isCheckContainsArrayNumbers(inputNumber1, randomNumber)) {
-            int[] showArray = Arrays.copyOf(inputNumber1, index + 1);
-            System.out.println("Попытки игрока: " + Arrays.toString(showArray) + " из " + inputNumber1.length + " последних предоставленных");
-        }
-        if (isCheckContainsArrayNumbers(inputNumber2, randomNumber)) {
-            int[] showArray = Arrays.copyOf(inputNumber2, index + 1);
-            System.out.println("Попытки игрока: " + Arrays.toString(showArray) + " из " + inputNumber1.length + " последних предоставленных");
+    private void showNumbers(Player player) {
+        if (isCheckContainsArrayNumbers(player.getInputNumber(), randomNumber)) {
+            int[] showArray = Arrays.copyOf(player.getInputNumber(), index + 1);
+            System.out.println("Попытки игрока: " + Arrays.toString(showArray) + " из " + player.getInputNumber().length + " последних предоставленных");
         }
     }
 
@@ -114,15 +98,29 @@ public class GuessNumber {
         return false;
     }
 
-    private void newGame() {
-        isPlay = true;
-        player1.setHistoryNumber("");
-        player2.setHistoryNumber("");
-        index = 0;
-        attempt = 0;
-    }
-
     private void inputHistory(Player player) {
         player.setHistoryNumber(player.getHistoryNumber() + player.getNumber() + " ");
+    }
+
+    private void accountingForAttempts() {
+        System.out.println("\nУ " + player1.getName() + " закончились попытки");
+        System.out.println("У " + player2.getName() + " закончились попытки");
+        Arrays.fill(player1.getInputNumber(), 0);
+        Arrays.fill(player2.getInputNumber(), 0);
+        index = 0;
+        continueTheGame();
+    }
+
+    private void continueTheGame() {
+        String gameOver = "";
+        do {
+            System.out.print("Ещё шанс! Продолжим? y/n: ");
+            gameOver = scan.nextLine();
+        } while (!gameOver.equals("y") && !gameOver.equals("n"));
+        if (gameOver.equals("y")) {
+            movesOfThePlayers();
+        } else {
+            isPlay = false;
+        }
     }
 }

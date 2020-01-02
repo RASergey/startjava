@@ -14,8 +14,6 @@ public class GuessNumberMain {
         GuessNumber guess = new GuessNumber(player1, player2);
         do {
             guess.startGame();
-            System.out.println("\nЗа всю игру " + player1.getName() + " ввел числа: " + player1.getHistoryNumber());
-            System.out.println("За всю игру " + player2.getName() + " ввел числа: " + player2.getHistoryNumber());
             do {
                 System.out.print("Хотите повторить? y/n: ");
                 gameOver = scan.nextLine();

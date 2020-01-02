@@ -4,6 +4,7 @@ public class Player {
     private String name;
     private int number;
     private String historyNumber = "";
+    private int[] inputNumber = new int[10];
 
     public Player(String name) {
         this.name = name;
@@ -27,5 +28,13 @@ public class Player {
 
     public void setHistoryNumber(String historyNumber) {
         this.historyNumber = historyNumber;
+    }
+
+    public int[] getInputNumber() {
+        return inputNumber;
+    }
+
+    public void setInputNumber(int number, int index) {
+        this.inputNumber[index] = number;
     }
 }
