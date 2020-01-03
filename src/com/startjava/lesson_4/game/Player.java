@@ -2,8 +2,8 @@ package com.startjava.lesson_4.game;
 
 public class Player {
     private String name;
-    private int number;
     private String historyNumber = "";
+    private int attempt;
     private int[] inputNumber = new int[10];
 
     public Player(String name) {
@@ -14,12 +14,12 @@ public class Player {
         return name;
     }
 
-    public int getNumber() {
-        return number;
+    public int getAttempt() {
+        return attempt;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setAttempt(int attempt) {
+        this.attempt = attempt;
     }
 
     public String getHistoryNumber() {
@@ -34,7 +34,7 @@ public class Player {
         return inputNumber;
     }
 
-    public void setInputNumber(int number, int index) {
-        this.inputNumber[index] = number;
+    public void setInputNumber(int number, int attempt) {
+        this.inputNumber[attempt] = number;
     }
 }
