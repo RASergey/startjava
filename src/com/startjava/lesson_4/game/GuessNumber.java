@@ -18,42 +18,40 @@ public class GuessNumber {
         System.out.println("Игра началась");
         setUp();
         movesPlayers();
-        System.out.println("\nЗа всю игру " + player1.getName() + " ввел числа: " + player1.getHistoryNumber());
-        System.out.println("За всю игру " + player2.getName() + " ввел числа: " + player2.getHistoryNumber());
+        System.out.println("\nЗа всю игру " + player1.getName() + " ввел числа: " + player1.getHistoryNumber().toString());
+        System.out.println("За всю игру " + player2.getName() + " ввел числа: " + player2.getHistoryNumber().toString());
     }
 
     private void setUp() {
         randomNumber = (int) (Math.random() * 101);
-        player1.setHistoryNumber("");
-        player2.setHistoryNumber("");
+        player1.getHistoryNumber().delete(0, player1.getHistoryNumber().length());
+        player2.getHistoryNumber().delete(0, player2.getHistoryNumber().length());
         player1.setAttempt(0);
         player2.setAttempt(0);
     }
 
     private void movesPlayers() {
-        System.out.println("У вас " + player1.getInputNumber().length + " попыток");
+        System.out.println("У вас " + player1.getInputNumbers().length + " попыток");
         do {
             if (makeMove(player1)) {
+                recordHistoryNumbers();
                 return;
             }
             if (makeMove(player2)) {
+                recordHistoryNumbers();
                 return;
             }
-            player1.setAttempt(player1.getAttempt() + 1);
-            player2.setAttempt(player2.getAttempt() + 1);
-        } while (player1.getAttempt() < player1.getInputNumber().length - 1 && player2.getAttempt() < player2.getInputNumber().length);
+        } while (player1.getAttempt() < player1.getInputNumbers().length && player2.getAttempt() < player2.getInputNumbers().length);
         resettingAttempts();
     }
 
     private boolean makeMove(Player player) {
         System.out.print("Ходит игрок: " + player.getName() + " введите число от 0 до 100: ");
-        player.setInputNumber(enterNumber(), player.getAttempt());
-        player.setHistoryNumber(player.getHistoryNumber() + Arrays.toString(Arrays.copyOfRange(player.getInputNumber(), player.getAttempt(), player.getAttempt() + 1)) + " ");
-        compareNumbers(player);
-        return isContainsNumber(player.getInputNumber(), randomNumber);
+        player.setInputNumber(inputNumber());
+        return compareNumbers(player);
     }
 
-    private int enterNumber() {
+    private int inputNumber() {
         while (!scan.hasNextInt()) {
             System.out.print("Некорректное число, повторите ввод: ");
             scan.next();
@@ -67,45 +65,43 @@ public class GuessNumber {
         return inputNumber;
     }
 
-    private void compareNumbers(Player player) {
-        if (!isContainsNumber(player.getInputNumber(), randomNumber)) {
+    private boolean compareNumbers(Player player) {
+        if (player.getInputNumber() != randomNumber) {
+            player.setAttempt(player.getAttempt() + 1);
             System.out.println(player.getName() + ", не угадал");
+            return false;
         } else {
-            System.out.print("\nИгрок " + player.getName() + " угадал число " + Arrays.toString(Arrays.copyOfRange(player.getInputNumber(), player.getAttempt(), player.getAttempt() + 1)) + " c " + (player.getAttempt() + 1) + " попытки из " + player.getInputNumber().length + " последних предоставленных");
-            int[] showArray = Arrays.copyOf(player.getInputNumber(), player.getAttempt() + 1);
-            System.out.println(" Попытки игрока: " + Arrays.toString(showArray));
+            System.out.print("\nИгрок " + player.getName() + " угадал число " + player.getInputNumber() + " c " + (player.getAttempt() + 1) + " попытки из " + player.getInputNumbers().length + " последних предоставленных");
+            System.out.println(" Попытки игрока: " + Arrays.toString(Arrays.copyOf(player.getInputNumbers(), player.getAttempt() + 1)));
+            player.setAttempt(player.getAttempt() + 1);
+            return true;
         }
-    }
-
-    private boolean isContainsNumber(int[] array, int number) {
-        for (int element : array) {
-            if (element == number) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void resettingAttempts() {
+        recordHistoryNumbers();
         System.out.println("\nУ " + player1.getName() + " закончились попытки");
         System.out.println("У " + player2.getName() + " закончились попытки");
-        Arrays.fill(player1.getInputNumber(), 0);
-        Arrays.fill(player2.getInputNumber(), 0);
+        Arrays.fill(player1.getInputNumbers(), 0);
+        Arrays.fill(player2.getInputNumbers(), 0);
         player1.setAttempt(0);
         player2.setAttempt(0);
         continueTheGame();
     }
 
+    private void recordHistoryNumbers() {
+        player1.setHistoryNumber(Arrays.copyOf(player1.getInputNumbers(), player1.getAttempt()));
+        player2.setHistoryNumber(Arrays.copyOf(player2.getInputNumbers(), player2.getAttempt()));
+    }
+
     private void continueTheGame() {
-        String gameOver = "";
+        String gameOver;
         do {
             System.out.print("Ещё шанс! Продолжим? y/n: ");
             gameOver = scan.nextLine();
         } while (!gameOver.equals("y") && !gameOver.equals("n"));
         if (gameOver.equals("y")) {
             movesPlayers();
-        } else {
-            return;
         }
     }
 }

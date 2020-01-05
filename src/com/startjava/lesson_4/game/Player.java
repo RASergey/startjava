@@ -1,8 +1,10 @@
 package com.startjava.lesson_4.game;
 
+import java.util.Arrays;
+
 public class Player {
     private String name;
-    private String historyNumber = "";
+    private StringBuilder historyNumber = new StringBuilder(" ");
     private int attempt;
     private int[] inputNumber = new int[10];
 
@@ -22,19 +24,23 @@ public class Player {
         this.attempt = attempt;
     }
 
-    public String getHistoryNumber() {
-        return historyNumber;
+    public int getInputNumber() {
+        return inputNumber[attempt];
     }
 
-    public void setHistoryNumber(String historyNumber) {
-        this.historyNumber = historyNumber;
-    }
-
-    public int[] getInputNumber() {
+    public int[] getInputNumbers() {
         return inputNumber;
     }
 
-    public void setInputNumber(int number, int attempt) {
-        this.inputNumber[attempt] = number;
+    public void setInputNumber(int number) {
+        inputNumber[attempt] = number;
+    }
+
+    public StringBuilder getHistoryNumber() {
+        return historyNumber;
+    }
+
+    public void setHistoryNumber(int[] number) {
+        historyNumber.append(Arrays.toString(number));
     }
 }
