@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private StringBuilder historyNumber = new StringBuilder(" ");
+    private StringBuilder historyNumbers = new StringBuilder();
     private int attempt;
-    private int[] inputNumber = new int[10];
+    private int[] enteredNumbers = new int[10];
 
     public Player(String name) {
         this.name = name;
@@ -24,23 +24,27 @@ public class Player {
         this.attempt = attempt;
     }
 
-    public int getInputNumber() {
-        return inputNumber[attempt];
+    public int getEnteredNumber() {
+        return enteredNumbers[attempt];
     }
 
-    public int[] getInputNumbers() {
-        return inputNumber;
+    public int[] getEnteredNumbers() {
+        return enteredNumbers;
     }
 
-    public void setInputNumber(int number) {
-        inputNumber[attempt] = number;
+    public void setEnteredNumbers(int number) {
+        enteredNumbers[attempt] = number;
     }
 
-    public StringBuilder getHistoryNumber() {
-        return historyNumber;
+    public String getHistoryNumbers() {
+        return historyNumbers.toString();
     }
 
-    public void setHistoryNumber(int[] number) {
-        historyNumber.append(Arrays.toString(number));
+    public void resetHistoryNumbers() {
+        historyNumbers.delete(0, historyNumbers.length());
+    }
+
+    public void addAllNumbers() {
+        historyNumbers.append(Arrays.toString(Arrays.copyOf(enteredNumbers, attempt)));
     }
 }
