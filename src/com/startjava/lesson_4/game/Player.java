@@ -24,10 +24,6 @@ public class Player {
         this.attempt = attempt;
     }
 
-    public int getEnteredNumber() {
-        return enteredNumbers[attempt];
-    }
-
     public int[] getEnteredNumbers() {
         return enteredNumbers;
     }
@@ -40,8 +36,12 @@ public class Player {
         return historyNumbers.toString();
     }
 
+    public int LastNumber() {
+        return enteredNumbers[attempt - 1];
+    }
+
     public void clearHistoryNumbers() {
-        historyNumbers.delete(0, historyNumbers.length());
+        historyNumbers.setLength(0);
     }
 
     public void addAllNumbers() {
