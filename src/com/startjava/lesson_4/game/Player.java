@@ -32,7 +32,7 @@ public class Player {
         return enteredNumbers;
     }
 
-    public void setEnteredNumbers(int number) {
+    public void setEnteredNumber(int number) {
         enteredNumbers[attempt] = number;
     }
 
@@ -40,7 +40,7 @@ public class Player {
         return historyNumbers.toString();
     }
 
-    public void resetHistoryNumbers() {
+    public void clearHistoryNumbers() {
         historyNumbers.delete(0, historyNumbers.length());
     }
 
