@@ -17,13 +17,13 @@ public class GuessNumber {
     public void startGame() {
         do {
             System.out.println("\nИгра началась");
-            startGamePlay();
+            startGameplay();
             setUpDefaultValues();
-        } while (continueGame());
-        finishGame();
+        } while (isContinueGame());
+        showHistoryGames();
     }
 
-    private void startGamePlay() {
+    private void startGameplay() {
         randomNumber = (int) (Math.random() * 101);
         System.out.println("У вас " + player1.getEnteredNumbers().length + " попыток");
         for (int i = 0; i < 10; i++) {
@@ -71,19 +71,15 @@ public class GuessNumber {
     }
 
     private void setUpDefaultValues() {
-        recordHistoryNumbers();
+        player1.addAllNumbers();
+        player2.addAllNumbers();
         Arrays.fill(player1.getEnteredNumbers(), 0);
         Arrays.fill(player2.getEnteredNumbers(), 0);
         player1.setAttempt(0);
         player2.setAttempt(0);
     }
 
-    private void recordHistoryNumbers() {
-        player1.addAllNumbers();
-        player2.addAllNumbers();
-    }
-
-    private boolean continueGame() {
+    private boolean isContinueGame() {
         String gameOver;
         do {
             System.out.print("Повторим? y/n: ");
@@ -92,7 +88,7 @@ public class GuessNumber {
         return gameOver.equals("y");
     }
 
-    private void finishGame() {
+    private void showHistoryGames() {
         System.out.println("\nЗа всю игру " + player1.getName() + " ввел числа: " + player1.getHistoryNumbers());
         System.out.println("За всю игру " + player2.getName() + " ввел числа: " + player2.getHistoryNumbers());
         player1.clearHistoryNumbers();

@@ -40,11 +40,11 @@ public class Player {
         return enteredNumbers[attempt - 1];
     }
 
-    public void clearHistoryNumbers() {
-        historyNumbers.setLength(0);
-    }
-
     public void addAllNumbers() {
         historyNumbers.append(Arrays.toString(Arrays.copyOf(enteredNumbers, attempt)));
+    }
+
+    public void clearHistoryNumbers() {
+        historyNumbers.setLength(0);
     }
 }
